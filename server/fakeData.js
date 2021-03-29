@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 const fakedata = {
     topList: [
         {   name:'Jako',
@@ -65,7 +67,22 @@ const fakedata = {
         },
     ]
 
-}
+};
+
+export const users = [ 
+    {
+        name: 'Samuel',
+        email: 'admin@example.com',
+        password: bcrypt.hashSync('1234567', 8),
+        isAdmin: true,
+    },
+    {
+        name: 'John',
+        email: 'user@example.com',
+        password: bcrypt.hashSync('1234567', 8),
+        isAdmin: false,
+    },
+];
 
 
 export default fakedata;
