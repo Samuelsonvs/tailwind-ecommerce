@@ -10,7 +10,7 @@ export const generateToken = (user) => {
         },
         process.env.JWT_SECRET || 'secretnothere',
         {
-            expiresIn: '30min',
+            expiresIn: '30m',
         }
     );
 };

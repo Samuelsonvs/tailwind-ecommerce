@@ -86,11 +86,11 @@ export const login = async (req, res) => {
 
         const data = await generateToken(user);
         
-        res.send({ _id: data._id,
-                    name: data.name,
-                    email: data.email,
-                    isAdmin: data.isAdmin,
-                    token: generateToken(data),
+        res.send({ _id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    isAdmin: user.isAdmin,
+                    token: data,
         })
         // res.json({ user: data.user, id: data.id, token: data.token, redirect: '/home'});
 
