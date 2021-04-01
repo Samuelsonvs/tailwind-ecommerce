@@ -1,6 +1,7 @@
-import userModel from '../models/userModel.js';
+import User from '../models/userModel.js';
 import { userSchema, authSchema } from '../helpers/validation.js';
 import { generateToken, isAuth } from '../middlewares/utilsAuth.js';
+import expressAsyncHandler from 'express-async-handler';
 
 /* 
     @route   GET api/auth/verify
@@ -36,20 +37,25 @@ export const register = async (req, res) => {
         return res.status(404).json({ errors: error_msg });
     }
     
-    const emailExists = await userModel.findOne({ email: params.email });
+    const emailExists = await User.findOne({ email: params.email });
     if(emailExists) {
         error_msg.push(`${params.email} is already taken`);
         return res.status(400).json({ errors: error_msg });
     }
 
     try {
-
-        const user = new userModel(params);
+        
+        const user = new User(params);
         await user.save();
 
-        const data = await user.generateAuthToken();
+        const data = await generateToken(user);
 
-        res.json({  user: data.user, id: data.id, token: data.token, redirect: '/home'});
+        res.send({ _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: data,
+        })
 
     } catch (err) {
         console.log(err)
@@ -77,9 +83,9 @@ export const login = async (req, res) => {
 
     try {
 
-        const user = await userModel.findByCredentials(params.email, params.password);
+        const user = await User.findByCredentials(params.email, params.password);
 
-        if(user == 401){
+        if(user === 401){
             error_msg.push('Incorrect email or password.')
             return res.status(400).json({ errors: error_msg });
         }

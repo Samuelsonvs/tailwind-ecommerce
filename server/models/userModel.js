@@ -38,8 +38,8 @@ userSchema.statics.findByCredentials = async function (email, password) {
 
     // check user
     if(!user){
-        await bcrypt.compare(password, process.env.FAKE_PASS); //just time
-        return status;
+        await bcrypt.compare(password, process.env.FAKE_PASS);
+        return status
     }
 
     // check password 

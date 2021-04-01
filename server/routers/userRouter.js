@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/userModel.js';
 import { generateToken, isAuth } from '../middlewares/utilsAuth.js';
 import { users } from '../fakeData.js';
-import { login } from '../controllers/loginRegisterController.js';
+import { login, register } from '../controllers/loginRegisterController.js';
 
 
 const userRouter = express.Router();
@@ -16,5 +16,6 @@ userRouter.get('/seed', expressAsyncHandler(async (req, res) => {
 }));
 
 userRouter.post('/login', login);
+userRouter.post('/register', register);
 
 export default userRouter;
