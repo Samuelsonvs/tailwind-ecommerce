@@ -10,20 +10,25 @@ import getAllProductFakeData from '../controllers/allProductController.js';
 
 const productRouter = express.Router();
 
-productRouter.get('/', expressAsyncHandler(async(req, res) => {
+productRouter.get('/', expressAsyncHandler(async (req, res) => {
     const prodTopList = await topList.find({});
     const prodLastEntered = await lastEntered.find({});
     res.status(200).send({prodTopList: prodTopList, prodLastEntered: prodLastEntered})
 }));
 
-productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
-    const product = await allProduct.findById(req.params.id);
-    if(product) {
-        res.status(200).send(product);
-    } else {
-        res.status(404).send({ message: 'Product Not Found' })
-    }
-}));
+// productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
+//     const product = await allProduct.findById(req.params.id);
+//     if(product) {
+//         res.status(200).send(product);
+//     } else {
+//         res.status(404).send({ message: 'Product Not Found' })
+//     }
+// }));
+
+productRouter.get('/allproduct', expressAsyncHandler(async (req, res) => {
+    const productAll = await allProduct.find({});
+    res.status(200).send({ productAll })
+}))
 
 productRouter.get('/allproductseed', getAllProductFakeData);
 

@@ -3,8 +3,8 @@ import fakedata from '../fakeData.js';
 import expressAsyncHandler from 'express-async-handler';
 
 
-    // @route   GET api/product/lastenteredseed
-    // @desc    Get all FakeStore
+    // @route   GET api/product/allproductseed
+    // @desc    Get all fakedata
     // @access  private 
 
 const getAllProductFakeData = expressAsyncHandler(async (req, res) => {
@@ -20,7 +20,8 @@ const getAllProductFakeData = expressAsyncHandler(async (req, res) => {
             }))
         }
         
-        res.json({ fakeAllProduct })
+        // res.json({ fakeAllProduct })
+        res.status(200).send({product: fakeAllProduct})
     } catch (err) {
         console.log(err)
     }
