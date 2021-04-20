@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const lastEnteredSchema = new mongoose.Schema({
+const latestSchema = new mongoose.Schema({
     name: { 
         type: String, 
         required: true, 
@@ -21,6 +21,6 @@ const lastEnteredSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-const lastEntered = mongoose.model('lastentered', lastEnteredSchema, "lastentered");
+const latest = mongoose.model('lastentered', latestSchema, "lastentered");
 
-export default lastEntered;
+export default latest;

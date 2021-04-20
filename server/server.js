@@ -2,10 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
+import uploadRouter from './routers/uploadRouter.js'
 
 dotenv.config();
 
@@ -37,6 +39,10 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ptiel', {
 
 app.use('/api/product', productRouter);
 app.use('/api/users', userRouter);
+app.use('/api/uploads', uploadRouter);
+
+const __dirname = path.resolve();
+app.use('frontend/public/uploads/:id', express.static(path.join(__dirname, '/frontend/public/uploads/:id')));
 
 app.use((err, req, res, next) => {
     res.status(500).send(({ message: err.message }));
