@@ -5,6 +5,10 @@ const hypeSchema = new mongoose.Schema({
         type: String, 
         required: true, 
     },
+    city: {
+        type: String,
+        required: true,
+    },
     owner: {
         type: String,
         required: true,
