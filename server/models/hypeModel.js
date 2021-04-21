@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const allProductSchema = new mongoose.Schema({
+const hypeSchema = new mongoose.Schema({
     name: { 
         type: String, 
         required: true, 
@@ -41,6 +41,6 @@ const allProductSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-const allProduct = mongoose.model('allProduct', allProductSchema,"allproduct");
+const hype = mongoose.model('hype', hypeSchema, "hypelist");
 
-export default allProduct;
+export default hype;

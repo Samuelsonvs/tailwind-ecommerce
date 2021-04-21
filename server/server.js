@@ -37,6 +37,11 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ptiel', {
 });
 
 
+// app.use('/',(req, res) => {
+//     res.send('Server is ready on port 5000')
+// })
+
+
 app.use('/api/product', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/uploads', uploadRouter);

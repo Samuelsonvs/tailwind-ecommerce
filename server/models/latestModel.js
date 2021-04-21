@@ -5,22 +5,42 @@ const latestSchema = new mongoose.Schema({
         type: String, 
         required: true, 
     },
+    owner: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: true,
+    },
     image: { 
-        type: String, 
+        type: [String], 
         required: true 
     },
     category: { 
         type: String, 
         required: true 
     },
+    gender: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: String,
+        required: true
+    },
     description: { 
         type: String, 
         required: true 
+    },
+    seller: {
+        type: String,
+        required: true
     },
 }, {
     timestamps: true,
 });
 
-const latest = mongoose.model('lastentered', latestSchema, "lastentered");
+const latest = mongoose.model('latest', latestSchema, "latestlist");
 
 export default latest;

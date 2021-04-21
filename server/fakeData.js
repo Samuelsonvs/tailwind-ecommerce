@@ -1,12 +1,11 @@
 import bcrypt from 'bcryptjs';
 
 const fakedata = {
-
-    allList : [
+    allProduct : [
         {   
             name:'Amazon yellow crowned',
             owner: 'Samuel Johnson',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/amazon1/mid1.jpg',
                 '/images/default/amazon1/mid2.jpg',
@@ -24,7 +23,7 @@ const fakedata = {
         {   
             name:'Lovely lovebirds',
             owner: 'Lance Wolfe',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/lovebird1/mid1.jpg',
                 '/images/default/lovebird1/mid2.jpg',
@@ -45,7 +44,7 @@ const fakedata = {
         {   
             name:'Forpus bird 6 month old',
             owner: 'Grover Hurlbutt',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/forpus1/mid1.jpg',
                 '/images/default/forpus1/mid2.jpg',
@@ -66,7 +65,7 @@ const fakedata = {
         {   
             name:'Baby finchs',
             owner: 'Conrad Walker',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/finch1/mid1.jpg',
                 '/images/default/finch1/mid2.jpg',
@@ -84,7 +83,7 @@ const fakedata = {
         {   
             name:'African Grey male',
             owner: 'Hunter Corbyn',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/africangrey1/mid1.jpg',
                 '/images/default/africangrey1/mid2.jpg',
@@ -102,7 +101,7 @@ const fakedata = {
         {   
             name:'African Grey',
             owner: 'Gene Cress',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/africangrey2/mid1.jpg',
                 '/images/default/africangrey2/mid2.jpg',
@@ -120,7 +119,7 @@ const fakedata = {
         {   
             name:'Alexandrine parrot',
             owner: 'Elmer Young',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/alexandrine1/mid1.jpg',
                 '/images/default/alexandrine1/mid2.jpg',
@@ -138,7 +137,7 @@ const fakedata = {
         {   
             name:'Adult budgies',
             owner: 'Christopher Paul',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie1/mid1.jpg',
                 '/images/default/budgie1/mid2.jpg',
@@ -156,7 +155,7 @@ const fakedata = {
         {   
             name:'Baby budgies',
             owner: 'Norman Smart',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie2/mid1.jpg',
                 '/images/default/budgie2/mid2.jpg',
@@ -177,7 +176,7 @@ const fakedata = {
         {   
             name:'Roseringed bird',
             owner: 'Norris Cunningham',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/roseringed1/mid1.jpg',
                 '/images/default/roseringed1/mid2.jpg',
@@ -195,7 +194,7 @@ const fakedata = {
         {   
             name:'Male budgie',
             owner: 'Barnaby Beck',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie3/mid1.jpg',
                 '/images/default/budgie3/mid2.jpg',
@@ -213,7 +212,7 @@ const fakedata = {
         {   
             name:'Budgies',
             owner: 'Samuel Johnson',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie4/mid1.jpg',
                 '/images/default/budgie4/mid2.jpg',
@@ -234,7 +233,7 @@ const fakedata = {
         {   
             name:'Canary',
             owner: 'Barnaby Beck',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/canary1/mid1.jpg',
                 '/images/default/canary1/mid2.jpg',
@@ -252,7 +251,7 @@ const fakedata = {
         {   
             name:'Baby cockatiels',
             owner: 'Mortimer Wood',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/cockatiel1/mid1.jpg',
                 '/images/default/cockatiel1/mid2.jpg',
@@ -280,7 +279,7 @@ const fakedata = {
         {   
             name:'Cockatiel male',
             owner: 'Ernest Carr',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/cockatiel2/mid1.jpg',
                 '/images/default/cockatiel2/mid2.jpg',
@@ -304,7 +303,7 @@ const fakedata = {
         {   
             name:'Budgies',
             owner: 'Samuel Johnson',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie4/mid1.jpg',
                 '/images/default/budgie4/mid2.jpg',
@@ -325,7 +324,7 @@ const fakedata = {
         {   
             name:'Canary',
             owner: 'Barnaby Beck',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/canary1/mid1.jpg',
                 '/images/default/canary1/mid2.jpg',
@@ -343,7 +342,7 @@ const fakedata = {
         {   
             name:'Baby budgies',
             owner: 'Norman Smart',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie2/mid1.jpg',
                 '/images/default/budgie2/mid2.jpg',
@@ -364,7 +363,7 @@ const fakedata = {
         {   
             name:'Forpus bird 6 month old',
             owner: 'Grover Hurlbutt',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/forpus1/mid1.jpg',
                 '/images/default/forpus1/mid2.jpg',
@@ -387,7 +386,7 @@ const fakedata = {
         {   
             name:'Lovely lovebirds',
             owner: 'Lance Wolfe',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/lovebird1/mid1.jpg',
                 '/images/default/lovebird1/mid2.jpg',
@@ -408,7 +407,7 @@ const fakedata = {
         {   
             name:'Forpus bird 6 month old',
             owner: 'Grover Hurlbutt',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/forpus1/mid1.jpg',
                 '/images/default/forpus1/mid2.jpg',
@@ -429,7 +428,7 @@ const fakedata = {
         {   
             name:'Baby finchs',
             owner: 'Conrad Walker',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/finch1/mid1.jpg',
                 '/images/default/finch1/mid2.jpg',
@@ -447,7 +446,7 @@ const fakedata = {
         {   
             name:'African Grey male',
             owner: 'Hunter Corbyn',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/africangrey1/mid1.jpg',
                 '/images/default/africangrey1/mid2.jpg',
@@ -465,7 +464,7 @@ const fakedata = {
         {   
             name:'African Grey',
             owner: 'Gene Cress',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/africangrey2/mid1.jpg',
                 '/images/default/africangrey2/mid2.jpg',
@@ -483,7 +482,7 @@ const fakedata = {
         {   
             name:'Alexandrine parrot',
             owner: 'Elmer Young',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/alexandrine1/mid1.jpg',
                 '/images/default/alexandrine1/mid2.jpg',
@@ -501,7 +500,7 @@ const fakedata = {
         {   
             name:'Adult budgies',
             owner: 'Christopher Paul',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie1/mid1.jpg',
                 '/images/default/budgie1/mid2.jpg',
@@ -519,7 +518,7 @@ const fakedata = {
         {   
             name:'Baby budgies',
             owner: 'Norman Smart',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/budgie2/mid1.jpg',
                 '/images/default/budgie2/mid2.jpg',
@@ -539,11 +538,11 @@ const fakedata = {
         },
     ],
     
-    lastest: [
+    latest: [
         {   
             name:'Lovely lovebirds',
             owner: 'Lance Wolfe',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/lovebird1/mid1.jpg',
                 '/images/default/lovebird1/mid2.jpg',
@@ -564,7 +563,7 @@ const fakedata = {
         {   
             name:'Forpus bird 6 month old',
             owner: 'Grover Hurlbutt',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/forpus1/mid1.jpg',
                 '/images/default/forpus1/mid2.jpg',
@@ -585,7 +584,7 @@ const fakedata = {
         {   
             name:'Baby finchs',
             owner: 'Conrad Walker',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/finch1/mid1.jpg',
                 '/images/default/finch1/mid2.jpg',
@@ -603,7 +602,7 @@ const fakedata = {
         {   
             name:'African Grey male',
             owner: 'Hunter Corbyn',
-            Phone:'555 55 55',
+            phone:'555 55 55',
             image:  [
                 '/images/default/africangrey1/mid1.jpg',
                 '/images/default/africangrey1/mid2.jpg',

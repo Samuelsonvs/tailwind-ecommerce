@@ -6,6 +6,7 @@ import allProduct from '../models/allProductModel.js';
 import getTopListFakeData from '../controllers/toplistController.js';
 import getLatestFakeData from '../controllers/latestController.js';
 import getAllProductFakeData from '../controllers/allProductController.js';
+import getHypeFakeData from '../controllers/hypeController.js';
 
 
 const productRouter = express.Router();
@@ -44,5 +45,7 @@ productRouter.get('/allproductseed', getAllProductFakeData);
 productRouter.get('/toplistseed', getTopListFakeData);
 
 productRouter.get('/latestseed', getLatestFakeData);
+
+productRouter.get('/hypeseed', getHypeFakeData);
 
 export default productRouter;

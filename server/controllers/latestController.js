@@ -22,6 +22,7 @@ const getLatestFakeData = expressAsyncHandler(async (req, res) => {
             await latest.insertMany(data_arr);
         }
 
+        res.status(200).send({latest: fakeLatest})
         // res.json({ fakeLatest })
 
     } catch (err) {

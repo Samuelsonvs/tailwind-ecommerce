@@ -10,7 +10,6 @@ import expressAsyncHandler from 'express-async-handler';
 const getTopListFakeData = expressAsyncHandler(async (req, res) => {
 
     try {
-
         const fakeTopList = await topList.find({});
         if(fakeTopList.length > 0){
             console.log("api/product/toplistseed")
@@ -24,7 +23,7 @@ const getTopListFakeData = expressAsyncHandler(async (req, res) => {
 
             await topList.insertMany(data_arr);
         }
-
+        res.status(200).send({topList: fakeTopList})
         // res.json({ fakeTopList })
 
     } catch (err) {

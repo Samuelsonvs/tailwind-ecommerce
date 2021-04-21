@@ -15,13 +15,20 @@ const getAllProductFakeData = expressAsyncHandler(async (req, res) => {
             console.log("api/product/allproductseed")
         }else{
             // seed data from json
-            await Promise.all(Object.keys(fakedata).map( async (state) => {
-                await allProduct.insertMany(fakedata[state])
-            }))
+            const data_arr = fakedata.allProduct;
+
+            await allProduct.insertMany(data_arr);
+
+            
+            // if 'alldata' have all of them we should use promises for take all data in 'fakeData'
+
+            // await Promise.all(Object.keys(fakedata).map( async (state) => {
+            //     await allProduct.insertMany(fakedata[state])
+            // }))
         }
+        res.status(200).send({productAll: fakeAllProduct})
         
         // res.json({ fakeAllProduct })
-        res.status(200).send({product: fakeAllProduct})
     } catch (err) {
         console.log(err)
     }
