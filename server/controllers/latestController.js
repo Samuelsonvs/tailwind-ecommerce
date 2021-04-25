@@ -1,6 +1,7 @@
 import latest from '../models/latestModel.js'
 import fakedata from '../fakeData.js';
 import expressAsyncHandler from 'express-async-handler';
+import allProduct from '../models/allProductModel.js';
 
 
     // @route   GET api/product/latestseed
@@ -17,9 +18,9 @@ const getLatestFakeData = expressAsyncHandler(async (req, res) => {
             // const resData = res;
         }else{
             // seed data from json
-            const data_arr = fakedata.latest
+            const newLatestList = await allProduct.find({"options.latestList": true})
 
-            await latest.insertMany(data_arr);
+            await latest.insertMany(newLatestList);
         }
 
         res.status(200).send({latest: fakeLatest})

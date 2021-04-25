@@ -1,6 +1,7 @@
 import hype from '../models/hypeModel.js';
 import fakedata from '../fakeData.js';
 import expressAsyncHandler from 'express-async-handler';
+import allProduct from '../models/allProductModel.js';
 
 
     // @route   GET api/product/hypeseed
@@ -15,9 +16,9 @@ const getHypeFakeData = expressAsyncHandler(async (req, res) => {
             console.log("api/product/allproductseed")
         }else{
             // seed data from json
-            const data_arr = fakedata.hype;
+            const newHypeList = await allProduct.find({"options.hypeList": true})
 
-            await hype.insertMany(data_arr);
+            await hype.insertMany(newHypeList);
 
         }
         res.status(200).send({hypelist: fakeHype})

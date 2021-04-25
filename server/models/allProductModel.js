@@ -41,6 +41,10 @@ const allProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    options: {
+        type: {String},
+        required: true
+    }
 }, {
     timestamps: true,
 });

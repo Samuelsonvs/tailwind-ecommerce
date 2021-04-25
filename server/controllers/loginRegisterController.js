@@ -2,6 +2,7 @@ import User from '../models/userModel.js';
 import { userSchema, authSchema } from '../helpers/validation.js';
 import { generateToken, isAuth } from '../middlewares/utilsAuth.js';
 import expressAsyncHandler from 'express-async-handler';
+import bcrypt from 'bcryptjs';
 
 /* 
     @route   GET api/auth/verify
@@ -45,7 +46,12 @@ export const register = async (req, res) => {
 
     try {
         
-        const user = new User(params);
+        const user = new User({
+            name: params.name,
+            email: params.email,
+            password:  bcrypt.hashSync(params.password, 8),
+            isAdmin: false
+        });
         await user.save();
 
         const data = await generateToken(user);

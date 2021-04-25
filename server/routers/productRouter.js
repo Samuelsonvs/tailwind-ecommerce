@@ -34,15 +34,29 @@ productRouter.get('/allproduct', expressAsyncHandler(async (req, res) => {
 }));
 
 productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
-    const product = await allProduct.findById(req.params.id) || 
-                    await topList.findById(req.params.id) || 
-                    await latest.findById(req.params.id) || 
-                    await hype.findById(req.params.id);
+    const product = await allProduct.findById(req.params.id)          
     if(product) {
         res.status(200).send(product);
     } else {
         res.status(404).send({ message: 'Product Not Found' })
     }
+}));
+
+productRouter.get('/create', expressAsyncHandler(async(req, res) => {
+    const data = req.body;
+    const product = new allProduct({
+        name: data.name,
+        city: data.city,
+        owner: data.owner,
+        phone: data.phone,
+        image: data.image,
+        category: data.category,
+        gender: data.gender,
+        age: data.age,
+        description: data.description,
+        seller: data.seller
+    })
+    await product.save();
 }));
 
 productRouter.get('/allproductseed', getAllProductFakeData);
