@@ -9,6 +9,7 @@ import getTopListFakeData from '../controllers/toplistController.js';
 import getLatestFakeData from '../controllers/latestController.js';
 import getAllProductFakeData from '../controllers/allProductController.js';
 import getHypeFakeData from '../controllers/hypeController.js';
+import productsUpdate from '../controllers/updateController.js';
 
 
 const productRouter = express.Router();
@@ -63,34 +64,7 @@ productRouter.get('/create', expressAsyncHandler(async(req, res) => {
 }));
 
 
-productRouter.put('/:id', expressAsyncHandler(async (req, res) => {
-    const productId = req.params.id;
-    const inProduct = await allProduct.findById(productId);
-    if (inProduct) {
-        const inHype = await hype.findById(productId);
-        const inLatest = await latest.findById(productId);
-        const inTopList= await topList.findById(productId);
-
-        await Promise.all([inProduct, inHype, inLatest, inTopList].map(async (state) => {
-            if(state) {
-                state.city = req.body.city;
-                state.name = req.body.name;
-                state.phone = req.body.phone;
-                state.category = req.body.category;
-                state.gender = req.body.gender;
-                state.age = req.body.age;
-                state.description = req.body.description;
-                state.seller = req.body.seller;
-                state.options !== undefined && (state.options = JSON.parse(req.body.options));
-                await state.save();
-            }
-         
-        }));
-        res.status(200).send({ message: 'Product Updated' })
-    } else {
-        res.status(404).send({message: 'Product Not Found '});
-    }
-}));
+productRouter.put('/:id', isAuth, isAdmin, productsUpdate);
 
 productRouter.get('/allproductseed', getAllProductFakeData);
 
