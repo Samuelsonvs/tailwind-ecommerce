@@ -10,6 +10,7 @@ import getLatestFakeData from '../controllers/latestController.js';
 import getAllProductFakeData from '../controllers/allProductController.js';
 import getHypeFakeData from '../controllers/hypeController.js';
 import productsUpdate from '../controllers/updateController.js';
+import reqList from '../models/requestModel.js';
 
 
 const productRouter = express.Router();
@@ -46,21 +47,21 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
 
 
 // create router
-productRouter.get('/create', expressAsyncHandler(async(req, res) => {
+productRouter.post('/create', expressAsyncHandler(async(req, res) => {
     const data = req.body;
-    const product = new allProduct({
+    const product = new reqList({
         name: data.name,
         city: data.city,
-        owner: data.owner,
-        phone: data.phone,
         image: data.image,
         category: data.category,
         gender: data.gender,
         age: data.age,
         description: data.description,
-        seller: data.seller
+        seller: data.seller,
+        options: data.options
     })
     await product.save();
+    res.status(200).send(product)
 }));
 
 

@@ -3,6 +3,7 @@ import express from 'express';
 import { isAuth } from '../middlewares/utilsAuth.js';
 import fs from 'fs';
 import path from 'path';
+import expressAsyncHandler from 'express-async-handler';
 
 const __dirname = path.resolve();
 
@@ -10,8 +11,8 @@ const uploadRouter = express.Router();
 
 const storage = multer.diskStorage({
     destination(req, file, cb) {
-        const c = `frontend/public/uploads/${req.params.id}`;
-        const newp = path.join(__dirname,`frontend/public/uploads/${req.params.id}`);
+        const c = `frontend/public/uploads/${req.headers.path}`;
+        const newp = path.join(__dirname,c);
         fs.mkdirSync(newp, { recursive: true});
         cb(null, c);
     },
@@ -23,10 +24,13 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-uploadRouter.post('/:id', isAuth, upload.array('image',15), (req, res) => {
-    console.log(req.files);
-    res.send('Upload Successful');
-});
+uploadRouter.post('/:id', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
+    res.send(req.files[0].destination);   
+}));
+
+uploadRouter.post('/create', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
+    res.send(req.files[0].destination);
+}));
 
 
 

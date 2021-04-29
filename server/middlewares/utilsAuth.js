@@ -9,9 +9,9 @@ export const generateToken = (user) => {
             isAdmin: user.isAdmin,
         },
         process.env.JWT_SECRET || 'secretnothere',
-        {
-            expiresIn: '30m',
-        }
+        // {
+        //     expiresIn: '30m',
+        // }
     );
 };
 
@@ -42,3 +42,22 @@ export const isAdmin = (req, res, next) => {
     }
 };
 
+
+
+
+
+
+
+
+// jwt.verify(
+//     token,
+//     process.env.JWT_SECRET || 'secretnothere',
+//     (err, decode) => {
+//         if (err) {
+//             res.status(401).send({ message: 'Invalid Token' });
+//         } else {
+//             req.user = decode;
+//             next();
+//         }
+//     }
+// )
