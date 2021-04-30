@@ -13,7 +13,7 @@ const getHypeFakeData = expressAsyncHandler(async (req, res) => {
     try {
         const fakeHype = await hype.find({});
         if(fakeHype.length > 0){
-            console.log("api/product/allproductseed")
+            console.log("Seed is allready created")
         }else{
             // seed data from json
             const newHypeList = await allProduct.find({"options.hypeList": true})

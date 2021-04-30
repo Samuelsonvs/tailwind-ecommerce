@@ -390,6 +390,25 @@ const fakedata = {
     ],
 };
 
+export const fakeReqData = [
+    {   
+        name:'Cockatiel male',
+        city:'Izmir',
+        owner: 'Ernest Carr',
+        phone:'555 55 55',
+        image: 'zp6pqldmdn1619689736837',
+        category:'Cockatiel',
+        gender: 'male',
+        age: '1-2 year',
+        description:'Duis facilisis malesuada justo sodales tempus. Suspendisse et auctor leo. Nulla facilisi. Proin eu molestie mauris. Mauris sollicitudin quam eget orci ultrices fringilla. Nullam tempus hendrerit velit at sagittis. Sed ut lorem ut diam porta efficitur. Morbi hendrerit suscipit turpis, id blandit nunc.',
+        seller: 'By owner',
+        options: {
+            hypeList: false,
+            topList: false,
+            latestList: false,
+        }
+    }
+]
 export const users = [ 
     {
         name: 'Samuel',

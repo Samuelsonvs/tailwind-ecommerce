@@ -13,7 +13,7 @@ const getTopListFakeData = expressAsyncHandler(async (req, res) => {
     try {
         const fakeTopList = await topList.find({});
         if(fakeTopList.length > 0){
-            console.log("api/product/toplistseed")
+            console.log("Seed is allready created")
             // const resData = res;
         }else{
             // seed data from json

@@ -12,7 +12,7 @@ const getAllProductFakeData = expressAsyncHandler(async (req, res) => {
     try {
         const fakeAllProduct = await allProduct.find({});
         if(fakeAllProduct.length > 0){
-            console.log("api/product/allproductseed")
+            console.log("Seed is allready created")
         }else{
             // seed data from json
             const data_arr = fakedata.allProduct;

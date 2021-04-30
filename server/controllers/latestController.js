@@ -14,7 +14,7 @@ const getLatestFakeData = expressAsyncHandler(async (req, res) => {
 
         const fakeLatest = await latest.find({});
         if(fakeLatest.length > 0){
-            console.log("api/product/latestseed")
+            console.log("Seed is allready created")
             // const resData = res;
         }else{
             // seed data from json

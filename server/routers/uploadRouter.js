@@ -24,12 +24,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-uploadRouter.post('/:id', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
-    res.send(req.files[0].destination);   
-}));
-
 uploadRouter.post('/create', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
-    res.send(req.files[0].destination);
+    const paths = req.files.map((state) => state.path)
+    res.send({paths});
 }));
 
 
