@@ -5,7 +5,7 @@ import allProduct from '../models/allProductModel.js';
 
 
     // @route   GET api/product/hypeseed
-    // @desc    Get all hypedata
+    // @desc    Get hyplist fakeData
     // @access  private 
 
 const getHypeFakeData = expressAsyncHandler(async (req, res) => {
@@ -23,7 +23,6 @@ const getHypeFakeData = expressAsyncHandler(async (req, res) => {
         }
         res.status(200).send({hypelist: fakeHype})
         
-        // res.json({ fakeHype })
     } catch (err) {
         console.log(err)
     }

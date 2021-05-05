@@ -408,21 +408,14 @@ export const fakeReqData = [
             latestList: false,
         }
     }
-]
-export const users = [ 
+];
+
+export const specialUser = [
     {
         name: 'Samuel',
         email: 'admin@example.com',
-        password: bcrypt.hashSync('1234567', 8),
-        isAdmin: true,
-    },
-    {
-        name: 'John',
-        email: 'user@example.com',
-        password: bcrypt.hashSync('1234567', 8),
-        isAdmin: false,
-    },
+        password: bcrypt.hashSync('123456789', 8)
+    }
 ];
-
 
 export default fakedata;

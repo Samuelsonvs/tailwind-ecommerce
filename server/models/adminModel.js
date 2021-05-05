@@ -1,10 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -20,33 +17,33 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 6,
+        minlength: 9,
     },
 }, { 
     timestamps: true 
 });
 
-userSchema.statics.findByCredentials = async function (email, password) {
+adminSchema.statics.findByCredentials = async function (email, password) {
 
-    const user = await this.findOne({ email });
+    const admin = await this.findOne({ email });
     const status = 401;
 
-    // check user
-    if(!user){
+    // check admin
+    if(!admin){
         await bcrypt.compare(password, process.env.FAKE_PASS);
         return status
     }
 
     // check password 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, admin.password);
 
     if(!isMatch){
         return status;
     }
 
-    return user;
+    return admin;
 }
 
 
-const User = mongoose.model("User", userSchema, "userz");
-export default User;
+const Admin = mongoose.model("Admin", adminSchema, "admindb");
+export default Admin;

@@ -4,7 +4,7 @@ import topList from '../models/topListModel.js';
 import latest from '../models/latestModel.js';
 import allProduct from '../models/allProductModel.js';
 import hype from '../models/hypeModel.js';
-import { isAuth, isAdmin } from '../middlewares/utilsAuth.js';
+import { isAuth, isAdminAuth } from '../middlewares/utilsAuth.js';
 import getTopListFakeData from '../controllers/toplistController.js';
 import getLatestFakeData from '../controllers/latestController.js';
 import getAllProductFakeData from '../controllers/allProductController.js';
@@ -13,7 +13,7 @@ import productsUpdate from '../controllers/updateController.js';
 import reqList from '../models/requestModel.js';
 import getReqListFakeData from '../controllers/requestListController.js';
 import importProduct from '../controllers/importProduct.js';
-
+import createProduct from '../controllers/createController.js';
 
 const productRouter = express.Router();
 
@@ -47,30 +47,11 @@ productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
 
 
 
-// create router
-productRouter.post('/create', expressAsyncHandler(async(req, res) => {
-    const data = req.body;
-    const product = new reqList({
-        name: data.name,
-        city: data.city,
-        owner: data.owner,
-        phone: data.phone,
-        image: data.image,
-        category: data.category,
-        gender: data.gender,
-        age: data.age,
-        description: data.description,
-        seller: data.seller,
-        options: data.options
-    })
-    await product.save();
-    res.status(200).send(product)
-}));
+productRouter.post('/create', createProduct);
 
+productRouter.post('/admincreate', isAdminAuth, importProduct );
 
-productRouter.post('/admincreate', isAuth, isAdmin, importProduct );
-
-productRouter.put('/:id', isAuth, isAdmin, productsUpdate);
+productRouter.put('/:id', isAdminAuth, productsUpdate);
 
 productRouter.get('/allproductseed', getAllProductFakeData);
 

@@ -5,7 +5,7 @@ import expressAsyncHandler from 'express-async-handler';
 
 
     // @route   GET api/product/requestlistseed
-    // @desc    Get all requestlist
+    // @desc    Get requestList fakeData
     // @access  private 
 
 const getReqListFakeData = expressAsyncHandler(async (req, res) => {

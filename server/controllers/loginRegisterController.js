@@ -1,8 +1,8 @@
 import User from '../models/userModel.js';
 import { userSchema, authSchema } from '../helpers/validation.js';
-import { generateToken, isAuth } from '../middlewares/utilsAuth.js';
-import expressAsyncHandler from 'express-async-handler';
+import { generateUToken } from '../middlewares/utilsAuth.js';
 import bcrypt from 'bcryptjs';
+import expressAsyncHandler from 'express-async-handler';
 
 /* 
     @route   GET api/auth/verify
@@ -13,12 +13,13 @@ export const authVerify = async (req, res) => {
     
     // This means token verify is success
     const data = {
-        user: req.user,
-        id: req.authID,
+        id: req.id,
+        name: req.name ,
+        email: req.email ,
         token: req.token,
     }
 
-    res.json(data);
+    res.status(200).json(data);
 }
 
 /* 
@@ -26,10 +27,11 @@ export const authVerify = async (req, res) => {
     @desc    Register User
     @access  public 
 */
-export const register = async (req, res) => {
+export const register = expressAsyncHandler(async (req, res) => {
 
     const error_msg = [];
     const params = req.body;
+
 
     const { error } = userSchema.validate(params, { abortEarly: false });
 
@@ -54,12 +56,12 @@ export const register = async (req, res) => {
         });
         await user.save();
 
-        const data = await generateToken(user);
+        const data = await Promise.all(generateUToken(user));
 
-        res.send({ _id: user._id,
+        res.status(200).json({ 
+            _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
             token: data,
         })
 
@@ -67,7 +69,7 @@ export const register = async (req, res) => {
         console.log(err)
         res.status(500).json({ errors: 'Server Error'});
     }
-}
+})
 
 
 /* 
@@ -75,7 +77,7 @@ export const register = async (req, res) => {
     @desc    Authenticate User
     @access  public 
 */
-export const login = async (req, res) => {
+export const login = expressAsyncHandler(async (req, res) => {
     
     const error_msg = [];
     const params = req.body;
@@ -96,18 +98,17 @@ export const login = async (req, res) => {
             return res.status(400).json({ errors: error_msg });
         }
 
-        const data = await generateToken(user);
+        const data = await Promise.all(generateUToken(user));
         
-        res.send({ _id: user._id,
-                    name: user.name,
-                    email: user.email,
-                    isAdmin: user.isAdmin,
-                    token: data,
+        res.status(200).json({ 
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            token: data,
         })
-        // res.json({ user: data.user, id: data.id, token: data.token, redirect: '/home'});
 
     } catch (err) {
         console.log(err)
         res.status(500).json({ errors: 'Server Error'});
     }  
-}
+})

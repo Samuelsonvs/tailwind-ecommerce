@@ -7,7 +7,8 @@ import helmet from 'helmet';
 import xss from 'xss-clean';
 import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
-import uploadRouter from './routers/uploadRouter.js'
+import uploadRouter from './routers/uploadRouter.js';
+import adminRouter from './routers/adminRouter.js';
 
 dotenv.config();
 
@@ -28,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(xss());
 
 // enable cors
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ptiel', {
     useNewUrlParser: true,
@@ -45,6 +46,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ptiel', {
 app.use('/api/product', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/uploads', uploadRouter);
+app.use('/api/admin', adminRouter);
 
 const __dirname = path.resolve();
 app.use('frontend/public/uploads/:id', express.static(path.join(__dirname, '/frontend/public/uploads/:id')));

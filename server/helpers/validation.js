@@ -13,3 +13,8 @@ export const userSchema = Joi.object({
     password: Joi.string().min(6).required(),
     confirm_password: Joi.string().allow(null).allow('')
 });
+
+export const adminSchema = Joi.object({
+    email: Joi.string().email().lowercase().required(),
+    password: Joi.string().min(9).required()
+});
