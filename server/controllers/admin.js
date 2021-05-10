@@ -23,7 +23,9 @@ export const adminLogin = expressAsyncHandler(async (req, res) => {
 
     if(error){
         error.details.map(err => error_msg.push(err.message));
-        return res.status(400).json({ errors: error_msg });
+        // for debuging send this message
+        //return res.status(400).json({ errors: error_msg });
+        return res.status(400).json({ errors: 'ERROR' });
     }
 
     try {

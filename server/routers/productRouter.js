@@ -5,15 +5,15 @@ import latest from '../models/latestModel.js';
 import allProduct from '../models/allProductModel.js';
 import hype from '../models/hypeModel.js';
 import { isAuth, isAdminAuth } from '../middlewares/utilsAuth.js';
-import getTopListFakeData from '../controllers/toplistController.js';
-import getLatestFakeData from '../controllers/latestController.js';
-import getAllProductFakeData from '../controllers/allProductController.js';
-import getHypeFakeData from '../controllers/hypeController.js';
-import productsUpdate from '../controllers/updateController.js';
+import getTopListFakeData from '../controllers/topList.js';
+import getLatestFakeData from '../controllers/latest.js';
+import getAllProductFakeData from '../controllers/allProduct.js';
+import getHypeFakeData from '../controllers/hype.js';
+import productsUpdate from '../controllers/update.js';
 import reqList from '../models/requestModel.js';
-import getReqListFakeData from '../controllers/requestListController.js';
+import getReqListFakeData from '../controllers/requestList.js';
 import importProduct from '../controllers/importProduct.js';
-import createProduct from '../controllers/createController.js';
+import createProduct from '../controllers/create.js';
 
 const productRouter = express.Router();
 
@@ -24,9 +24,9 @@ productRouter.get('/', expressAsyncHandler(async (req, res) => {
 }));
 
 productRouter.get('/allproduct', expressAsyncHandler(async (req, res) => {
-    const generalList = await allProduct.find({});
+    const HypeAllProductList = await allProduct.find({});
     const hypeList = await hype.find({});
-    res.status(200).send({ generalList, hypeList })
+    res.status(200).send({ HypeAllProductList, hypeList })
 }));
 
 productRouter.get('/requestlist',expressAsyncHandler(async (req, res) => {
@@ -37,7 +37,7 @@ productRouter.get('/requestlist',expressAsyncHandler(async (req, res) => {
 
 // if you want to use any seed route you should take in comment this router
 productRouter.get('/:id', expressAsyncHandler(async(req, res) => {
-    const product = await allProduct.findById(req.params.id)          
+    const product = await allProduct.findById(req.params.id)        
     if(product) {
         res.status(200).send(product);
     } else {

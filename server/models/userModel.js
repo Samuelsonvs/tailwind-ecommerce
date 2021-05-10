@@ -22,6 +22,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
     },
+    status: {
+        type: Boolean,
+        required: true,
+    }
 }, { 
     timestamps: true 
 });

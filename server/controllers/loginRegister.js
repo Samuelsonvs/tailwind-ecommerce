@@ -52,7 +52,7 @@ export const register = expressAsyncHandler(async (req, res) => {
             name: params.name,
             email: params.email,
             password:  bcrypt.hashSync(params.password, 8),
-            isAdmin: false
+            status : true
         });
         await user.save();
 
@@ -96,7 +96,12 @@ export const login = expressAsyncHandler(async (req, res) => {
         if(user === 401){
             error_msg.push('Incorrect email or password.')
             return res.status(400).json({ errors: error_msg });
-        }
+        };
+
+        if(user.status === false) {
+            error_msg.push('Your account has been banned.Pls contact to support')
+            return res.status(400).json({errors: error_msg})
+        };
 
         const data = await Promise.all(generateUToken(user));
         
