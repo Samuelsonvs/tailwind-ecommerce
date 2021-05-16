@@ -23,8 +23,23 @@ const getReqListFakeData = expressAsyncHandler(async (req, res) => {
         res.status(200).send({reqList: fakeAllReqList})
         
     } catch (err) {
-        console.log(err)
+        res.status(404).send(err)
     }
 })
 
 export default getReqListFakeData;
+
+
+export const reqL = expressAsyncHandler(async (req, res) => {
+    
+    try {
+        const requestList = await reqList.find({});
+        if (requestList) {
+            res.status(200).send({ requestList })
+        } else {
+            res.status(200).send('RequestList not have anything')
+        }
+    } catch (err) {
+        res.status(404).send(err)
+    }
+})

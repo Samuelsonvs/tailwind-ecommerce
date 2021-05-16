@@ -35,6 +35,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/ptiel', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
 });
 
 

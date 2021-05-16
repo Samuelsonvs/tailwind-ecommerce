@@ -1,6 +1,6 @@
 import multer from 'multer';
 import express from 'express';
-import { isAuth } from '../middlewares/utilsAuth.js';
+import { isAdminAuth, isAuth } from '../middlewares/utilsAuth.js';
 import fs from 'fs';
 import path from 'path';
 import expressAsyncHandler from 'express-async-handler';
@@ -24,11 +24,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-uploadRouter.post('/create', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
+uploadRouter.post('/create', isAdminAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
     const paths = req.files.map((state) => (state.destination+"/"+state.filename).split('public')[1]);
     res.send({paths});
 }));
 
+uploadRouter.post('/request', isAuth, upload.array('image',15), expressAsyncHandler( async(req, res) => {
+    const paths = req.files.map((state) => (state.destination+"/"+state.filename).split('public')[1]);
+    res.send({paths});
+}));
 
 
 export default uploadRouter;
