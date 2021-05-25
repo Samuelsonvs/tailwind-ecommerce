@@ -14,7 +14,13 @@ export const userSchema = Joi.object({
     confirm_password: Joi.string().allow(null).allow('')
 });
 
+//admin
 export const adminSchema = Joi.object({
     email: Joi.string().email().lowercase().required(),
     password: Joi.string().min(9).required()
 });
+
+//emails
+export const emailSchema = Joi.object({
+    email: Joi.string().email().lowercase().required()
+})
